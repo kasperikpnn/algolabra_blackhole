@@ -13,13 +13,14 @@ Työ toteutetaan Python-ohjelmointikielellä. Vertaisarviointia varten hallitsen
 Tutustuin itse peliin [Tom Scottin videolta](https://www.youtube.com/watch?v=zMLE7a3faI4), minkä katsominen on ehkä paras tapa hahmottaa pelin kulkua.
 
 Black Hole on kynä- ja paperipeli. Black Hole-"lauta" muodostuu paperille piirtämällä palloista muodostuva kolmio tähän tapaan:
+```
         ()
        ()()
       ()()()
      ()()()()
     ()()()()()
    ()()()()()()
-
+```
 Nyt pelaajat asettavat kolmioon lukuja vuorotellen, aloittaen luvusta 1, jonka jälkeen asetetaan luku 2, 3, ..., päättyen lukuun 10. Kolmioon jää lopulta yksi tyhjä ruutu, joka on ns. "musta aukko", joka imee ympärillään olevat numerot. Lasketaan kummankin pelaajan luvut yhteen, jotka olivat mustan aukon ympärillä. Voittaja on se pelaaja, jonka yhteenlaskettu summa on pienempi. Jos summat ovat yhtä suuria, peli päättyy tasapeliin. (peliin voisi keksiä säännön, jolla ratkaista tasapelitilanne, mutta tässä toteutuksessa tasapelejä ei ratkaista)
 
 ## Dokumentaatio
