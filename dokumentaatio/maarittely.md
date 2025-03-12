@@ -10,7 +10,7 @@ Työ toteutetaan Python-ohjelmointikielellä. Vertaisarviointia varten hallitsen
 
 ### Peli
 
-Tutustuin itse peliin [Tom Scottin videolta](https://www.youtube.com/watch?v=zMLE7a3faI4), minkä katsominen on ehkä paras tapa hahmottaa pelin kulkua.
+Tutustuin itse peliin [Tom Scottin videolta](https://www.youtube.com/watch?v=zMLE7a3faI4), minkä katsominen on yksi tapa hahmottaa pelin kulkua.
 
 Black Hole on kynä- ja paperipeli. Black Hole-"lauta" muodostuu paperille piirtämällä palloista muodostuva kolmio tähän tapaan:
 ```
