@@ -1,0 +1,9 @@
+# Viikko 1
+
+Tällä viikolla päädyin valitsemaan aiheeni, joka on Black Hole-peliin tekoälyn luominen. (pelistä löytyy selitys määrittelydokumentissa) Tosin tiesin jo kurssille ilmoittautuessa, että haluaisin käsitellä tätä peliä jossain mielessä. Peli on kiehtonut minua lähes kymmenen vuotta, sillä se vaikuttaa hyvin yksinkertaiselta, mutta en tiedä mistä sen "ratkaisemisessa" kannattaa lähteä liikkeelle: peliä itse pelanneena tuntuu vaikealta tehdä minkäänlaisia päätöksiä varsinkin alkupelissä, kun ei ole tietoa, minne musta aukko tulee lopulta muodostumaan. Mielenkiintoisempaa tästä tekee sen, että tietääkseni kukaan ei ole ratkaissut tätä peliä (en löydä Internetistä minkäänlaisia viitteitä tästä).
+
+Aiheen valinnan lisäksi olen alustanut harjoitustyön repositorion ja rekisteröinyt sen Labtooliin, sekä opin ottamaan Poetryn käyttöön. Poetry on minulle täysin uusi työkalu: käytimme Tietokannat ja web-ohjelmointi kurssilla Pythonin sisäänrakennettua *venv*-moduulia. Poetryn käyttöön ottaminen tuntui paljon helpommalta venviin verrattuna.
+
+Otin ohjaajaan, Hannu Kärnään, yhteyttä sähköpostitse, sillä en ollut varma onko aiheeni tarpeeksi laaja kurssille. Sain varmuuden, että aihe on hyvä ja riittävä laajuus saadaan lisäämällä "iteratiivinen syveneminen, ja siihen liittyvä siirtojärjestyksen optimointi". Sain myös vinkkejä, että kannattaa käyttää funktionaalista lähestymistapaa, eli 2D-taulukkoa, jota lähetetään minimaxissa eteenpäin, ennemmin kuin olio-ohjelmointia virheiden välttämiseksi ja myös tehonkin takia.
+
+Aion tulevalla viikolla ensin toteuttaa itse pelin, jonka pitäisi olla helppoa. Aion tämän jälkeen tutustua siihen, miten minimax-algoritmi toimii ja mitä iteratiivinen syveneminen oikeastaan tarkoittaa tässä kontekstissa, ja pohdin millä heuristiikkafunktiolla voitaisin mitata sitä, kuinka hyvä pelitilanne on ja kuinka hyvä siirto on missäkin tilanteessa tekoälylle.
