@@ -1,10 +1,12 @@
+import blackhole_ai
+
 # Muuttujat
 
 board = [None] * 21
 
 player_numbers = {
-    "P1": set(range(1, 11)),
-    "AI": set(range(1, 11)),
+    "P1": list(range(1, 11)),
+    "AI": list(range(1, 11)),
 }
 
 current_turn = "P1"
@@ -35,6 +37,7 @@ adjacency = {
 }
 
 # Funktiot
+
 def display_board():
     """Näyttää tämänhetkisen laudan tilanteen."""
     layout = [
@@ -57,14 +60,82 @@ def format_slot(pos):
     else:
         num, player = board[pos]
         return f"({player}:{num:2})" # Täytetty ruutu -> palauttaa ruudun tässä muodossa: P1:3 tai CPU:2
+        # Pelitilannetta on tällä hetkellä hyvin vaikea hahmottaa terminalista koska ruuduista tulee erikokoisia tuon merkinnän takia. Pitäisikö tyhjistä ruuduista tehdä isompia?
     
-def get_input(current_player):
-    """Käytännössä if-lause: jos on pelaajan vuoro niin jatketaan funktiolle get_player_input, jos tekoälyn vuoro niin get_ai_input."""
+def get_input():
+    if current_turn == "P1":
+        return get_player_input()
+    elif current_turn == "AI":
+        return get_ai_input()
+    else:
+        return -1 # Ei ollut pelaajan eikä AI:n vuoro (tämän ei pitäisi tapahtua)
 
 def get_player_input():
     """Käydään yksittäinen pelaajan vuoro läpi. Pelaajan tarvitsee kirjoittaa vain ruudun sijaintinumero terminaaliin sijoittaakseen oman numeronsa ja pelatakseen vuoronsa."""
+    while True:
+        try:
+            print("Pelaajan vuoro!")
+            pos = int(input("Valitse tyhjä ruutu kirjoittamalla ruudun sijaintinumero (0-20): "))
+            if pos < 0 or pos >= 21 or board[pos] is not None:
+                print("Numero ei ole välillä 0-20 tai ruutu on jo täytetty!")
+                continue
+
+            return player_numbers["P1"][0], pos
+        except ValueError:
+            print("Virheellinen syöte!") 
 
 def get_ai_input():
-    """Käydään tekoälyn vuoro läpi. (Tekoälyn koodi tulee sijaitsemaan eri .py tiedostossa) Aluksi tekoäly toteutetaan vain niin, että se tekee sattumanvaraisen vuoron, kunnes pelin toteutus on kunnossa."""
+    print("Tekoälyn vuoro!")
+    return blackhole_ai.process_turn(board, turn_number, player_numbers["AI"])
+
+def find_black_hole():
+    """Käytetään pelin lopussa mustan aukon löytämiseksi. Palauttaa ruudun sijaintinumeron."""
+    for i, val in enumerate(board):
+        if val is None:
+            return i
+    return -2 # Mustaa aukkoa ei löytynyt (tämän ei pitäisi tapahtua)
+
+def compute_scores(black_hole_pos):
+    """Laskee kummankin pelaajan summan mustan aukon ympärillä."""
+    adjacent = adjacency[black_hole_pos]
+    player_sums = {"P1": 0, "AI": 0}
+    for pos in adjacent:
+        if board[pos]:
+            num, player = board[pos]
+            player_sums[player] += num
+    return player_sums
+
+# Peli
+
+print("Black Holen säännöt:")
+print("1. Pelaajat asettavat vuorotellen numeroita aloittaen luvusta 1 ja päättyen lukuun 10.")
+print("2. Yksi laudan ruuduista jää lopulta tyhjäksi, ja tästä ruudusta tulee musta aukko.")
+print("3. Tavoite on minimoida omien numeroiden summa mustan aukon ympärillä - se pelaaja jolla on pienempi summa voittaa!\n")
+
+display_board()
+
+turn_number = 1
+for i in range(20):
+    num, pos = get_input()
+    board[pos] = (num, current_turn)
+    player_numbers[current_turn].pop(0)
+    display_board()
+    current_turn = "AI" if current_turn == "P1" else "P1"
+    turn_number+=1
+
+black_hole = find_black_hole()
+print(f"Musta aukko jäi ruutuun {black_hole}!!")
+
+scores = compute_scores(black_hole)
+print(f"\nPelaajien summat:")
+print(f"Pelaaja: {scores["P1"]}")
+print(f"Tekoäly: {scores["AI"]}")
+
+if scores["P1"] < scores["AI"]:
+    print("Pelaaja voitti! :)")
+elif scores["AI"] < scores["P1"]:
+    print("Tekoäly voitti! :(")
+else:
+    print("Tasapeli :/")
 
 display_board()
