@@ -1,4 +1,5 @@
 import blackhole_ai
+import random
 
 # Muuttujat
 
@@ -9,7 +10,8 @@ player_numbers = {
     "AI": list(range(1, 11)),
 }
 
-current_turn = "P1"
+players = ["P1", "AI"]
+current_turn = random.choice(players)
 
 # Määrittelee jokaisen ruudun viereiset ruudut. Käytetään pelin lopussa, kun viimeisestä ruudusta tulee "black hole".
 adjacency = {
@@ -56,11 +58,10 @@ def display_board():
 def format_slot(pos):
     """Formatoi yksittäisen ruudun tekstin."""
     if board[pos] is None:
-        return f"({pos:2})"  # Tyhjä ruutu -> palauttaa ruudun sijaintinumeron
+        return f"({str(pos).center(5)})"  # Tyhjä ruutu -> palauttaa ruudun sijaintinumeron
     else:
         num, player = board[pos]
-        return f"({player}:{num:2})" # Täytetty ruutu -> palauttaa ruudun tässä muodossa: P1:3 tai CPU:2
-        # Pelitilannetta on tällä hetkellä hyvin vaikea hahmottaa terminalista koska ruuduista tulee erikokoisia tuon merkinnän takia. Pitäisikö tyhjistä ruuduista tehdä isompia?
+        return f"({player}:{num:2})".center(7) # Täytetty ruutu -> palauttaa ruudun tässä muodossa: P1:3 tai CPU:2
     
 def get_input():
     if current_turn == "P1":
@@ -74,7 +75,7 @@ def get_player_input():
     """Käydään yksittäinen pelaajan vuoro läpi. Pelaajan tarvitsee kirjoittaa vain ruudun sijaintinumero terminaaliin sijoittaakseen oman numeronsa ja pelatakseen vuoronsa."""
     while True:
         try:
-            print("Pelaajan vuoro!")
+            print(f"[VUORO {turn_number}] Pelaajan vuoro! Aika asettaa laudalle numero {player_numbers["P1"][0]}")
             pos = int(input("Valitse tyhjä ruutu kirjoittamalla ruudun sijaintinumero (0-20): "))
             if pos < 0 or pos >= 21 or board[pos] is not None:
                 print("Numero ei ole välillä 0-20 tai ruutu on jo täytetty!")
@@ -85,8 +86,10 @@ def get_player_input():
             print("Virheellinen syöte!") 
 
 def get_ai_input():
-    print("Tekoälyn vuoro!")
-    return blackhole_ai.process_turn(board, turn_number, player_numbers["AI"])
+    print(f"[VUORO {turn_number}] Tekoälyn vuoro!")
+    num, pos = blackhole_ai.process_turn(board, turn_number, player_numbers["AI"])
+    print(f"Tekoäly: Hmm, taidanpa asettaa luvun {num} ruutuun {pos}.")
+    return num, pos
 
 def find_black_hole():
     """Käytetään pelin lopussa mustan aukon löytämiseksi. Palauttaa ruudun sijaintinumeron."""
