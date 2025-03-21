@@ -10,9 +10,6 @@ player_numbers = {
     "AI": list(range(1, 11)),
 }
 
-players = ["P1", "AI"]
-current_turn = random.choice(players)
-
 # Määrittelee jokaisen ruudun viereiset ruudut. Käytetään pelin lopussa, kun viimeisestä ruudusta tulee "black hole".
 adjacency = {
     0: [1, 2],
@@ -63,15 +60,16 @@ def format_slot(pos):
         num, player = board[pos]
         return f"({player}:{num:2})".center(7) # Täytetty ruutu -> palauttaa ruudun tässä muodossa: P1:3 tai CPU:2
     
-def get_input():
+def get_input(current_turn, turn_number):
+    """Käytännössä vain if-lause, joka antaa vuoron joko pelaajalle tai tekoälylle."""
     if current_turn == "P1":
-        return get_player_input()
+        return get_player_input(turn_number)
     elif current_turn == "AI":
-        return get_ai_input()
+        return get_ai_input(turn_number)
     else:
         return -1 # Ei ollut pelaajan eikä AI:n vuoro (tämän ei pitäisi tapahtua)
 
-def get_player_input():
+def get_player_input(turn_number):
     """Käydään yksittäinen pelaajan vuoro läpi. Pelaajan tarvitsee kirjoittaa vain ruudun sijaintinumero terminaaliin sijoittaakseen oman numeronsa ja pelatakseen vuoronsa."""
     while True:
         try:
@@ -85,7 +83,8 @@ def get_player_input():
         except ValueError:
             print("Virheellinen syöte!") 
 
-def get_ai_input():
+def get_ai_input(turn_number):
+    """Käsittelee tekoälyn vuoron. Pääasiassa oikeastaan vain kutsuu blackhole_ai.process_turn ja palauttaa saadun position."""
     print(f"[VUORO {turn_number}] Tekoälyn vuoro!")
     num, pos = blackhole_ai.process_turn(board, turn_number, player_numbers["AI"])
     print(f"Tekoäly: Hmm, taidanpa asettaa luvun {num} ruutuun {pos}.")
@@ -108,37 +107,37 @@ def compute_scores(black_hole_pos):
             player_sums[player] += num
     return player_sums
 
-# Peli
-
-print("Black Holen säännöt:")
-print("1. Pelaajat asettavat vuorotellen numeroita aloittaen luvusta 1 ja päättyen lukuun 10.")
-print("2. Yksi laudan ruuduista jää lopulta tyhjäksi, ja tästä ruudusta tulee musta aukko.")
-print("3. Tavoite on minimoida omien numeroiden summa mustan aukon ympärillä - se pelaaja jolla on pienempi summa voittaa!\n")
-
-display_board()
-
-turn_number = 1
-for i in range(20):
-    num, pos = get_input()
-    board[pos] = (num, current_turn)
-    player_numbers[current_turn].pop(0)
+def game():
+    """Peli"""
+    print("Black Holen säännöt:")
+    print("1. Pelaajat asettavat vuorotellen numeroita aloittaen luvusta 1 ja päättyen lukuun 10.")
+    print("2. Yksi laudan ruuduista jää lopulta tyhjäksi, ja tästä ruudusta tulee musta aukko.")
+    print("3. Tavoite on minimoida omien numeroiden summa mustan aukon ympärillä - se pelaaja jolla on pienempi summa voittaa!\n")
     display_board()
-    current_turn = "AI" if current_turn == "P1" else "P1"
-    turn_number+=1
+    players = ["P1", "AI"]
+    current_turn = random.choice(players)
+    turn_number = 1
+    for i in range(20):
+        num, pos = get_input(current_turn, turn_number)
+        board[pos] = (num, current_turn)
+        player_numbers[current_turn].pop(0)
+        display_board()
+        current_turn = "AI" if current_turn == "P1" else "P1"
+        turn_number+=1
 
-black_hole = find_black_hole()
-print(f"Musta aukko jäi ruutuun {black_hole}!!")
+    black_hole = find_black_hole()
+    print(f"Musta aukko jäi ruutuun {black_hole}!!")
 
-scores = compute_scores(black_hole)
-print(f"\nPelaajien summat:")
-print(f"Pelaaja: {scores["P1"]}")
-print(f"Tekoäly: {scores["AI"]}")
+    scores = compute_scores(black_hole)
+    print(f"\nPelaajien summat:")
+    print(f"Pelaaja: {scores["P1"]}")
+    print(f"Tekoäly: {scores["AI"]}")
 
-if scores["P1"] < scores["AI"]:
-    print("Pelaaja voitti! :)")
-elif scores["AI"] < scores["P1"]:
-    print("Tekoäly voitti! :(")
-else:
-    print("Tasapeli :/")
+    if scores["P1"] < scores["AI"]:
+        print("Pelaaja voitti! :)")
+    elif scores["AI"] < scores["P1"]:
+        print("Tekoäly voitti! :(")
+    else:
+        print("Tasapeli :/")
 
-display_board()
+game()
