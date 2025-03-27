@@ -60,11 +60,11 @@ def format_slot(pos):
         num, player = board[pos]
         return f"({player}:{num:2})".center(7) # Täytetty ruutu -> palauttaa ruudun tässä muodossa: P1:3 tai CPU:2
     
-def get_input(current_turn, turn_number):
+def get_input(current_player, turn_number):
     """Käytännössä vain if-lause, joka antaa vuoron joko pelaajalle tai tekoälylle."""
-    if current_turn == "P1":
+    if current_player == "P1":
         return get_player_input(turn_number)
-    elif current_turn == "AI":
+    elif current_player == "AI":
         return get_ai_input(turn_number)
     else:
         return -1 # Ei ollut pelaajan eikä AI:n vuoro (tämän ei pitäisi tapahtua)
@@ -90,14 +90,14 @@ def get_ai_input(turn_number):
     print(f"Tekoäly: Hmm, taidanpa asettaa luvun {num} ruutuun {pos}.")
     return num, pos
 
-def find_black_hole():
+def find_black_hole(board):
     """Käytetään pelin lopussa mustan aukon löytämiseksi. Palauttaa ruudun sijaintinumeron."""
     for i, val in enumerate(board):
         if val is None:
             return i
     return -2 # Mustaa aukkoa ei löytynyt (tämän ei pitäisi tapahtua)
 
-def compute_scores(black_hole_pos):
+def compute_scores(black_hole_pos, board):
     """Laskee kummankin pelaajan summan mustan aukon ympärillä."""
     adjacent = adjacency[black_hole_pos]
     player_sums = {"P1": 0, "AI": 0}
@@ -110,25 +110,25 @@ def compute_scores(black_hole_pos):
 def game():
     """Peli"""
     print("Black Holen säännöt:")
-    print("1. Pelaajat asettavat vuorotellen numeroita aloittaen luvusta 1 ja päättyen lukuun 10.")
-    print("2. Yksi laudan ruuduista jää lopulta tyhjäksi, ja tästä ruudusta tulee musta aukko.")
-    print("3. Tavoite on minimoida omien numeroiden summa mustan aukon ympärillä - se pelaaja jolla on pienempi summa voittaa!\n")
+    print("1. Pelaajat asettavat pyramidilaudalle vuorotellen numeroita aloittaen luvusta 1 ja päättyen lukuun 10.")
+    print("2. Viimeisellä vuorolla tyhjäksi jääneestä solusta muodostuu musta aukko.")
+    print("3. Pelin lopussa lasketaan kummankin pelaajan numeroiden summa mustan aukon ympärillä - pelaaja, jolla on pienempi summa voittaa!\n")
     display_board()
     players = ["P1", "AI"]
-    current_turn = random.choice(players)
+    current_player = random.choice(players)
     turn_number = 1
     for i in range(20):
-        num, pos = get_input(current_turn, turn_number)
-        board[pos] = (num, current_turn)
-        player_numbers[current_turn].pop(0)
+        num, pos = get_input(current_player, turn_number)
+        board[pos] = (num, current_player)
+        player_numbers[current_player].pop(0)
         display_board()
-        current_turn = "AI" if current_turn == "P1" else "P1"
+        current_player = "AI" if current_player == "P1" else "P1"
         turn_number+=1
 
-    black_hole = find_black_hole()
-    print(f"Musta aukko jäi ruutuun {black_hole}!!")
+    black_hole = find_black_hole(board)
+    print(f"Musta aukko muodostui ruutuun {black_hole}!!")
 
-    scores = compute_scores(black_hole)
+    scores = compute_scores(black_hole, board)
     print(f"\nPelaajien summat:")
     print(f"Pelaaja: {scores["P1"]}")
     print(f"Tekoäly: {scores["AI"]}")
@@ -139,5 +139,3 @@ def game():
         print("Tekoäly voitti! :(")
     else:
         print("Tasapeli :/")
-
-game()
