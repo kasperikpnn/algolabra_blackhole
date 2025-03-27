@@ -7,6 +7,6 @@ Hyvin produktiivinen päivä! Sain hyviä vinkkejä ohjaajalta, miten lähteä t
 
 Heuristiikkana käytän tällä hetkellä arvoa (tekoälyn senhetkisten voittoruutujen määrä - tekoälyn senhetkisten häviävien ruutujen määrä). Se ei mielestäni ole kaikista optimaalisin, mutta vaikuttaa toimivan toivotusti: tekoäly välttelee keskimmäisiä ruutuja kovasti alkupelissä, koska sillä hetkellä ne luovat enemmän häviäviä ruutuja tekoälylle. Tämä johtaa suoraan siihen, että tekoäly kasaa omat numeronsa lähelle toisiaan alkupelissä (vasempaan yläreunaan pelilautaa), mikä toki on mielestäni tärkeä strategia pelissä.
 
-Onnistuin pelaamaan yhden tasapelin tekoälyä vastaan (kaduttaa, etten tallentanut kyseistä peliä itselleni muistiin, se olisi varmasti ollut tärkeää dataa), mutta muuten tekoäly voittaa minut melko usein. Yritän kehittää huomenna tekoälylle lisää testejä, tällä hetkellä testit käyvät läpi vain evaluate-funktion.
+Onnistuin pelaamaan yhden tasapelin tekoälyä vastaan (kaduttaa, etten tallentanut kyseistä peliä itselleni muistiin, se olisi varmasti ollut tärkeää dataa), mutta muuten tekoäly voittaa minut melko usein. Yritän kehittää huomenna tekoälylle lisää testejä, tällä hetkellä testit käyvät läpi vain evaluate-funktion. *Muokkaus: Onnistuin saavuttamaan voiton myöhemmin tekoälyä vastaan, ja otin lopullisen pelitilanteen talteen.*
 
 Yksi idea, mikä minulla on jatkokehitystä varten, on symmetristen pelitilanteiden käsitteleminen vain kerran. En tosin tiedä vielä, miten tämä kannattaisi toteuttaa järkevästi.
