@@ -6,6 +6,7 @@ class BlackHoleAI:
         self.board = [None] * 21
         self.ai_numbers = list(range(1, 11))
         self.player_numbers = list(range(1, 11))
+        self.best_moves = {}
 
     def process_turn(self, board, ai_numbers, player_numbers):
         self.board = board.copy()
@@ -57,15 +58,12 @@ class BlackHoleAI:
     
     def evaluate(self):
         winning_spaces = 0
-        equal_spaces = 0
         losing_spaces = 0
         for i in range(21):
             if self.board[i] == None:
                 scores = compute_scores(i, self.board)
                 if self.is_winning_score(scores):
                     winning_spaces+=1
-                elif self.is_winning_score(scores) == None:
-                    equal_spaces+=1
                 elif self.is_winning_score(scores) == False:
                     losing_spaces+=1
         return winning_spaces - losing_spaces
@@ -81,7 +79,13 @@ class BlackHoleAI:
                 return (None, 0)
         if depth == 0:
             return (None, self.evaluate())
+        
         if isMaximizing:
+            tuple_board = tuple(self.board)
+            prev_best_move = self.best_moves.get(tuple_board)
+            if prev_best_move in empty_spaces:
+                empty_spaces.remove(prev_best_move)
+                empty_spaces.insert(0, prev_best_move)
             value = -math.inf
             best_space = None
             for space in empty_spaces:
@@ -96,6 +100,7 @@ class BlackHoleAI:
                 alpha = max(alpha, value)
                 if alpha >= beta:
                     break
+            self.best_moves[tuple_board] = best_space
             return best_space, value
         else:
             value = math.inf
