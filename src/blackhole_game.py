@@ -1,4 +1,3 @@
-import blackhole_ai
 import random
 
 # Muuttujat
@@ -86,7 +85,7 @@ def get_player_input(turn_number):
 def get_ai_input(turn_number):
     """Käsittelee tekoälyn vuoron. Pääasiassa oikeastaan vain kutsuu blackhole_ai.process_turn ja palauttaa saadun position."""
     print(f"[VUORO {turn_number}] Tekoälyn vuoro!")
-    num, pos = blackhole_ai.process_turn(board, turn_number, player_numbers["AI"])
+    num, pos = player_numbers["AI"][0], bh_ai.process_turn(board, player_numbers["AI"], player_numbers["P1"])
     print(f"Tekoäly: Hmm, taidanpa asettaa luvun {num} ruutuun {pos}.")
     return num, pos
 
@@ -139,3 +138,8 @@ def game():
         print("Tekoäly voitti! :(")
     else:
         print("Tasapeli :/")
+
+if __name__ == "__main__":
+    import blackhole_ai
+    bh_ai = blackhole_ai.BlackHoleAI()
+    game()
