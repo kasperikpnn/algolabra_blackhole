@@ -86,8 +86,8 @@ def get_ai_input(turn_number):
     """Käsittelee tekoälyn vuoron. Pääasiassa oikeastaan vain kutsuu blackhole_ai.process_turn ja palauttaa saadun position."""
     print(f"[VUORO {turn_number}] Tekoälyn vuoro!")
     num, pos = player_numbers["AI"][0], bh_ai.process_turn(board, player_numbers["AI"], player_numbers["P1"])
-    print(f"Tekoäly: Hmm, taidanpa asettaa luvun {num} ruutuun {pos}.")
-    return num, pos
+    print(f"Tekoäly: Hmm, taidanpa asettaa luvun {num} ruutuun {pos[0]}. (Arvo: {pos[1]})")
+    return num, pos[0]
 
 def find_black_hole(board):
     """Käytetään pelin lopussa mustan aukon löytämiseksi. Palauttaa ruudun sijaintinumeron."""

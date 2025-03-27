@@ -39,7 +39,7 @@ class BlackHoleAI:
         self.ai_numbers.pop(0)
 
     def make_player_move(self, space):
-        self.board[space] = (self.player_numbers[0], "AI")
+        self.board[space] = (self.player_numbers[0], "P1")
         self.player_numbers.pop(0)
 
     def undo_AI_move(self, space):
@@ -92,9 +92,7 @@ class BlackHoleAI:
                 self.make_AI_move(space)
                 new_score = self.minimax(depth-1, alpha, beta, False)
                 self.undo_AI_move(space)
-                print(new_score)
-                print(value)
-                if new_score[1] > value:
+                if new_score[1] >= value:
                     value = new_score[1]
                     best_space = space
                 alpha = max(alpha, value)
@@ -109,7 +107,7 @@ class BlackHoleAI:
                 self.make_player_move(space)
                 new_score = self.minimax(depth-1, alpha, beta, True)
                 self.undo_player_move(space)
-                if new_score[1] < value:
+                if new_score[1] <= value:
                     value = new_score[1]
                     best_space = space
                 beta = min(beta, value)
@@ -126,4 +124,4 @@ class BlackHoleAI:
             space, value = self.minimax(depth, -math.inf, math.inf, True)
             if space is not None:
                 best_space = space
-        return best_space
+        return best_space, value
