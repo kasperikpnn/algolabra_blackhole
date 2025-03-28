@@ -9,12 +9,14 @@ class BlackHoleAI:
         self.best_moves = {}
 
     def process_turn(self, board, ai_numbers, player_numbers):
+        """Kopioi pelitilanteen ja jäljellä olevat numerot ennen kuin kokeillaan eri siirtoja."""
         self.board = board.copy()
         self.ai_numbers = ai_numbers.copy()
         self.player_numbers = player_numbers.copy()
         return self.iterative_deepening()
 
     def get_empty_spaces(self):
+        """Käytetään minimaxin alussa, muodostaa listan mahdollisista siirroista."""
         empty_spaces = []
         for i in range(21): # 21 ruutua
             if self.board[i] == None:
@@ -22,6 +24,7 @@ class BlackHoleAI:
         return empty_spaces
 
     def is_winning_score(self, scores):
+        """Varmistaa, onko ruutu tällä hetkellä tai pelin lopussa voittava tekoälylle."""
         if scores["P1"] > scores["AI"]:
             return True
         elif scores["P1"] == scores["AI"]:
@@ -30,19 +33,23 @@ class BlackHoleAI:
             return False
 
     def is_winning_board(self):
+        """Käytetään, kun laudalla on enää vain musta aukko jäljellä."""
         black_hole = find_black_hole(self.board)
         scores = compute_scores(black_hole, self.board)
         return self.is_winning_score(scores)
     
     def make_AI_move(self, space):
+        """Tekee tekoälyn kokeiltavan siirron minimaxissa."""
         self.board[space] = (self.ai_numbers[0], "AI")
         self.ai_numbers.pop(0)
 
     def make_player_move(self, space):
+        """Tekee pelaajan kokeiltavan siirron minimaxissa."""
         self.board[space] = (self.player_numbers[0], "P1")
         self.player_numbers.pop(0)
 
     def undo_AI_move(self, space):
+        """Peruu tekoälyn kokeiltavan siirron minimaxissa."""
         self.board[space] = None
         if len(self.ai_numbers) >= 1:
             self.ai_numbers.insert(0, self.ai_numbers[0]-1)
@@ -50,6 +57,7 @@ class BlackHoleAI:
             self.ai_numbers = [10]
 
     def undo_player_move(self, space):
+        """Peruu pelaajan kokeiltavan siirron minimaxissa."""
         self.board[space] = None
         if len(self.player_numbers) >= 1:
             self.player_numbers.insert(0, self.player_numbers[0]-1)
@@ -57,6 +65,7 @@ class BlackHoleAI:
             self.player_numbers = [10]
     
     def evaluate(self):
+        """Arvioi pelitilanteen. Heuristiikkana tekoälyn senhetkisten voittoruutujen määrä miinus pelaajan senhetkisten voittoruutujen määrä."""
         winning_spaces = 0
         losing_spaces = 0
         for i in range(21):
@@ -69,8 +78,9 @@ class BlackHoleAI:
         return winning_spaces - losing_spaces
 
     def minimax(self, depth, alpha, beta, isMaximizing):
+        """Minimax-algoritmi tehostettuna alpha-beta -karsinnalla ja parhaan siirron muistamisella."""
         empty_spaces = self.get_empty_spaces()
-        if len(empty_spaces) == 1:
+        if len(empty_spaces) == 1: ## Kun musta aukko on ainoastaan jäljellä
             if self.is_winning_board():
                 return (None, math.inf)
             elif self.is_winning_board() == False:
@@ -80,8 +90,8 @@ class BlackHoleAI:
         if depth == 0:
             return (None, self.evaluate())
         
-        if isMaximizing:
-            tuple_board = tuple(self.board)
+        if isMaximizing: ## maksimointi
+            tuple_board = tuple(self.board) ## Täytyy muuttaa tupleksi dictionaryä varten
             prev_best_move = self.best_moves.get(tuple_board)
             if prev_best_move in empty_spaces:
                 empty_spaces.remove(prev_best_move)
@@ -100,7 +110,7 @@ class BlackHoleAI:
                     break
             self.best_moves[tuple_board] = best_space
             return best_space, value
-        else:
+        else: ## minimointi
             value = math.inf
             best_space = None
             for space in empty_spaces:
@@ -115,7 +125,8 @@ class BlackHoleAI:
                     break
             return best_space, value
 
-    def iterative_deepening(self, max_depth=6, time_limit=2.0):
+    def iterative_deepening(self, max_depth=20, time_limit=5.0):
+        """Iteratiivinen syveneminen. Aikarajaksi asetettu 2 sekuntia toistaiseksi. Max depth = 20 sallii tällä hetkellä pelin läpikäymisen ihan loppuun asti."""
         best_space = None
         start_time = time.time()
         for depth in range(1, max_depth+1):
