@@ -135,4 +135,5 @@ class BlackHoleAI:
             space, value = self.minimax(depth, -math.inf, math.inf, True)
             if space is not None:
                 best_space = space
+        print("Päästiin syvyyteen " + str(depth))
         return best_space, value
