@@ -5,8 +5,8 @@ import random
 board = [None] * 21
 
 player_numbers = {
-    "P1": list(range(1, 11)),
-    "AI": list(range(1, 11)),
+    "P1": 1,
+    "AI": 1,
 }
 
 # Määrittelee jokaisen ruudun viereiset ruudut. Käytetään pelin lopussa, kun viimeisestä ruudusta tulee "black hole".
@@ -72,22 +72,23 @@ def get_player_input(turn_number):
     """Käydään yksittäinen pelaajan vuoro läpi. Pelaajan tarvitsee kirjoittaa vain ruudun sijaintinumero terminaaliin sijoittaakseen oman numeronsa ja pelatakseen vuoronsa."""
     while True:
         try:
-            print(f"[VUORO {turn_number}] Pelaajan vuoro! Aika asettaa laudalle numero {player_numbers["P1"][0]}")
+            print(f"[VUORO {turn_number}] Pelaajan vuoro! Aika asettaa laudalle numero {player_numbers["P1"]}")
             pos = int(input("Valitse tyhjä ruutu kirjoittamalla ruudun sijaintinumero (0-20): "))
             if pos < 0 or pos >= 21 or board[pos] is not None:
                 print("Numero ei ole välillä 0-20 tai ruutu on jo täytetty!")
                 continue
 
-            return player_numbers["P1"][0], pos
+            return player_numbers["P1"], pos
         except ValueError:
             print("Virheellinen syöte!") 
 
 def get_ai_input(turn_number):
     """Käsittelee tekoälyn vuoron. Pääasiassa oikeastaan vain kutsuu blackhole_ai.process_turn ja palauttaa saadun position."""
     print(f"[VUORO {turn_number}] Tekoälyn vuoro!")
-    num, pos = player_numbers["AI"][0], bh_ai.process_turn(board, player_numbers["AI"], player_numbers["P1"])
-    print(f"Tekoäly: Hmm, taidanpa asettaa luvun {num} ruutuun {pos[0]}. (Arvo: {pos[1]})")
-    return num, pos[0]
+    num = player_numbers["AI"]
+    pos, score = bh_ai.process_turn(board, player_numbers["AI"], player_numbers["P1"])
+    print(f"Tekoäly: Hmm, taidanpa asettaa luvun {num} ruutuun {pos}. (Arvo: {score})")
+    return num, pos
 
 def find_black_hole(board):
     """Käytetään pelin lopussa mustan aukon löytämiseksi. Palauttaa ruudun sijaintinumeron."""
@@ -119,7 +120,7 @@ def game():
     for i in range(20):
         num, pos = get_input(current_player, turn_number)
         board[pos] = (num, current_player)
-        player_numbers[current_player].pop(0)
+        player_numbers[current_player]+=1
         display_board()
         current_player = "AI" if current_player == "P1" else "P1"
         turn_number+=1
