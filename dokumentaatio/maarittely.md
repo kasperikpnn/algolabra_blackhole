@@ -25,4 +25,4 @@ Nyt pelaajat asettavat kolmion ruutuihin lukuja vuorotellen, aloittaen luvusta 1
 
 ## Dokumentaatio
 
-Kaikki dokumentaatio laboratoriotyötä koskien on kirjoitettu suomeksi. Ohjelmassa muuttujat yms. saattavat olla nimettynä englanniksi, mutta koodin kommentointi kirjoitetaan myös suomen kielellä.
+Kaikki harjoitustyön dokumentaatio on kirjoitettu suomeksi. Ohjelmassa muuttujat yms. saattavat olla nimettynä englanniksi, mutta koodin kommentointi kirjoitetaan myös suomen kielellä.
