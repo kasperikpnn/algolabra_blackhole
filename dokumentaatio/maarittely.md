@@ -4,7 +4,7 @@ Tämä dokumentti määrittelee Helsingin Yliopiston tietojenkäsittelytieteen k
 
 ## Aihe
 
-Laboratoriotyön aiheen ydin on toteuttaa tekoäly Black Hole-pelille. Tekoäly toteutetaan todennäköisesti minimax-algoritmilla, jota on tehostettu alpha-beta-karsinnalla sekä optimoinnilla käyttäen iteratiivista syvenemistä, ja siirtojen järjestämistä edellisen iteraation perusteella. Tavoitteena on, että tekoäly pystyy pelaamaan ihmistä vastaan, eli myös sovelluslogiikka ja käyttöliittymä pelille täytyy toteuttaa. Käyttöliittymä tulee hyvin todennäköisesti olemaan tekstipohjainen.
+Harjoitustyön aiheen ydin on toteuttaa tekoäly Black Hole-pelille. Tekoäly toteutetaan todennäköisesti minimax-algoritmilla, jota on tehostettu alpha-beta-karsinnalla sekä optimoinnilla käyttäen iteratiivista syvenemistä, ja siirtojen järjestämistä edellisen iteraation perusteella. Tavoitteena on, että tekoäly pystyy pelaamaan ihmistä vastaan, eli myös sovelluslogiikka ja käyttöliittymä pelille täytyy toteuttaa. Käyttöliittymä tulee hyvin todennäköisesti olemaan tekstipohjainen.
 
 Työ toteutetaan Python-ohjelmointikielellä. Vertaisarviointia varten ymmärrän myös tarvittaessa Javaa.
 
