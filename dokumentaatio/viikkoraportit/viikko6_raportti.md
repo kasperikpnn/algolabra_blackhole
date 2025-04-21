@@ -20,8 +20,8 @@ Muutin hieman kopiota pelistä niin, että toinen pelaaja valitseekin siirtonsa 
 
 Toinen pelaaja sattumanvaraisesti kasasi omat alkupelin numeronsa reunalle ja kasaan, mikä osoittautui hyväksi strategiaksi. Ensimmäinen pelaaja teki mahdollisesti virheen kuudennella vuorollaan sijoittamalla oman numeronsa "keskelle" vapaaksi jäänyttä aluetta, jonka jälkeen toinen pelaaja löysi heti voiton. En osaa vielä oikein sanoa miksi, enkä osaa sanoittaa tätä vielä kunnolla, mutta tuntuu, että omat numerot kannattaa usein sijoittaa tyhjäksi jääneen alueen reunoille, ja harvemmin kannattaa "jakaa" tyhjäksi jäänyttä aluetta useaan osaan, niin kuin nyt ensimmäinen pelaaja teki siirrollaan. Yritän miettiä tätä tarkemmin ja mahdollisesti perustella tätä matemaattisesti.
 
-# Torstai
-## Käytetty aika: 3h
+## Torstai
+#### Käytetty aika: 3h
 
 Kokeilin uutta heuristiikkaa toivoen, että tekoälyn alkupeli kehittyisi parempaan suuntaan. Ideana oli, että kaikista häviävistä ruuduista ei tulisi rankaista tasapuolisesti: joskus häviävä ruutu, joka on jo täysin ympäröity numeroilla on oikeastaan paljon vähemmän paha kun häviävä ruutu, jonka täyttäminen lisää pelaajalle yhden tai useamman häviävän ruudun. Tämä pätee myös toiseen suuntaan: voittava ruutu on vahvempi silloin, jos vastapelaaja saa lisää häviäviä ruutuja täyttäessään sen. Uusi heuristiikka oli tämänkaltainen:
 - voittava ruutu +1
@@ -33,8 +33,8 @@ Valitettavasti heuristiikka oli melko hidas ja testasin tätäkin heuristiikkaa 
 
 Pohdin myös, voiko voiton jo suoraan nähdä voittavien ja häviävien ruutujen määrästä, mutta joissain pelilaudan tilanteissa, erityisesti keskivaiheissa peliä tämä tuntuu haastavalta. Yritän miettiä tätä pidemmälle.
 
-# Perjantai
-## Käytetty aika: 3h
+## Perjantai
+#### Käytetty aika: 3h
 
 Aika meni lähinnä taas uuden heuristiikan miettimiseen ja eri arvojen kokeiluun, mutta mikään ei oikein tuntunut tuottavan tulosta. Tehostin hieman algoritmia toteuttamalla summataulukon (laskee summat tyhjien ruutujen ympärillä ja taulukkoa ylläpidetään joka siirron jälkeen), jota käytetään heuristiikkaa laskiessa.
 
