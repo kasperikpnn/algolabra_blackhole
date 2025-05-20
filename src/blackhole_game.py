@@ -46,9 +46,12 @@ def display_board():
         [10, 11, 12, 13, 14],
         [15, 16, 17, 18, 19, 20]
     ]
-    for row in layout:
+    base_indent = 21
+    indent = 3
+    for i, row in enumerate(layout):
+        indent_str = " " * (base_indent - indent * i)
         row_str = " ".join(format_slot(pos) for pos in row)
-        print(" " * (15 - len(row) * 2), row_str)
+        print(f"{indent_str}{row_str}")
     print()
 
 def format_slot(pos):
@@ -74,6 +77,8 @@ def get_player_input(turn_number):
         try:
             print(f"[VUORO {turn_number}] Pelaajan vuoro! Aika asettaa laudalle numero {player_numbers["P1"]}")
             pos = int(input("Valitse tyhjä ruutu kirjoittamalla ruudun sijaintinumero (0-20): "))
+            if pos == 21:
+                return ("rewind", "rewind") # Pelaaja voi palata edelliseen siirtoon salaisella komennolla 21. Käytetään testaamista varten
             if pos < 0 or pos >= 21 or board[pos] is not None:
                 print("Numero ei ole välillä 0-20 tai ruutu on jo täytetty!")
                 continue
@@ -115,16 +120,19 @@ def game():
     print("3. Pelin lopussa lasketaan kummankin pelaajan numeroiden summa mustan aukon ympärillä - pelaaja, jolla on pienempi summa voittaa!\n")
     display_board()
     players = ["P1", "AI"]
+    # Aloittava pelaaja arvotaan
     current_player = random.choice(players)
     turn_number = 1
-    for i in range(20):
+    moves = []
+    while turn_number <= 20:
         num, pos = get_input(current_player, turn_number)
-        board[pos] = (num, current_player)
+        move = (num, current_player)
+        board[pos] = move
+        moves.append(move)
         player_numbers[current_player]+=1
         display_board()
         current_player = "AI" if current_player == "P1" else "P1"
         turn_number+=1
-
     black_hole = find_black_hole(board)
     print(f"Musta aukko muodostui ruutuun {black_hole}!!")
 
@@ -138,7 +146,7 @@ def game():
     elif scores["AI"] < scores["P1"]:
         print("Tekoäly voitti! :(")
     else:
-        print("Tasapeli :/")
+        print("Tasapeli! :/")
 
 if __name__ == "__main__":
     import blackhole_ai
