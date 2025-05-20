@@ -56,7 +56,7 @@ Muiden tekoälyn käyttämien metodien, kuten *obtain_info* (tehdään ennen min
 
 ## Laajojen kielimallien käyttö
 
-Olen käyttänyt ChatGPT-4o (OpenAI)-kielimallia näihin asioihin:
+Olen käyttänyt ChatGPT-4o (OpenAI)-kielimallia:
 - itse pelin koodin kehittämisen tukena: pyysin tekoälyä suoraan kehittämään pelille koodin, ja sain osittain toimivaa koodia josta käytin suoraan joitain hyviä ideoita
 - itselleni uusien konseptien (minimax-algoritmi, iteratiivinen syveneminen, alpha-beta -karsinta) selittämiseen esimerkkien avulla
 - virheanalyysiin monissa eri tilanteissa, missä ohjelman toiminta on keskeytynyt virheen vuoksi
