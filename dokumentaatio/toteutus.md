@@ -22,10 +22,12 @@ Tekoäly saa heuristisen arvonsa tällä kaavalla:
 
 > 2a + b - c - 2d
 
-Missä:
 a = tyhjät ruudut, joissa vastapelaajalla on suurempi summa kuin tekoälyllä ja summien erotus on suurempi kuin tekoälyn seuraava numero
+
 b = tyhjät ruudut, joissa vastapelaajalla on suurempi summa kuin tekoälyllä (sisältää siis myös a:n tyhjät ruudut)
+
 c = tyhjät ruudut, joissa tekoälyllä on suurempi summa kuin vastapelaajalla
+
 d = tyhjät ruudut, joissa tekoälyllä on suurempi summa kuin vastapelaajalla ja summien erotus on suurempi kuin vastapelaajan seuraava numero
 
 ## Tila- ja aikavaativuudet
