@@ -41,3 +41,7 @@ Luokalle BlackHoleAI (sijaitsee blackhole_ai.py tiedostossa) on toteutettu yksik
 #### test_minimax_win_over_tie
 
 - valitseeko minimax-algoritmi voiton tasapelin sijasta pelin viimeisellä siirrolla.
+
+## Empiiriset testit
+
+Empiiristen testien tavoitteena on testata valittua heuristiikkaa, eli pelaako tekoäly Black Hole-peliä optimaalisesti. Suoritin kaksi isompaa empiiristä koetta: ensimmäisessä kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee siirtonsa täysin satunnaisesti, ja toisessa kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee neljä ensimmäistä siirtoa täysin satunnaisesti. Kummassakin kokeessa pelataan 100 peliä ja lasketaan kummankin osapuolen voitot sekä tasapelit.
