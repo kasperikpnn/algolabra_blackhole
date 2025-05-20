@@ -6,7 +6,7 @@ Black Hole on peli, jota voi pelata tekstipohjaisessa käyttöliittymässä teko
 
 ## Käyttöohje
 
-1. Kloonaa repositorio komennolla $ git clone https://github.com/kasperikpnn/algolabra_blackhole.git
+1. Kloonaa repositorio komennolla ```$ git clone https://github.com/kasperikpnn/algolabra_blackhole.git```
 2. Vaihda repositorion juurihakemistoon terminalissa esimerkiksi cd-komennolla.
 
 (huom. jos et suorita testejä, askeleet 3-4 ovat täysin valinnaisia, sillä peli itsessään ei käytä Pythonin vakiokirjaston ulkopuolisia kirjastoja)
