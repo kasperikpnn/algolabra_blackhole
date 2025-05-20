@@ -75,7 +75,7 @@ def get_player_input(turn_number):
     """Käydään yksittäinen pelaajan vuoro läpi. Pelaajan tarvitsee kirjoittaa vain ruudun sijaintinumero terminaaliin sijoittaakseen oman numeronsa ja pelatakseen vuoronsa."""
     while True:
         try:
-            print(f"[VUORO {turn_number}] Pelaajan vuoro! Aika asettaa laudalle numero {player_numbers["P1"]}")
+            print(f"[VUORO {turn_number}] Pelaajan vuoro! Aika asettaa laudalle numero {player_numbers['P1']}")
             pos = int(input("Valitse tyhjä ruutu kirjoittamalla ruudun sijaintinumero (0-20): "))
             if pos == 21:
                 return ("rewind", "rewind") # Pelaaja voi palata edelliseen siirtoon salaisella komennolla 21. Käytetään testaamista varten
@@ -138,8 +138,8 @@ def game():
 
     scores = compute_scores(black_hole, board)
     print(f"\nPelaajien summat:")
-    print(f"Pelaaja: {scores["P1"]}")
-    print(f"Tekoäly: {scores["AI"]}")
+    print(f"Pelaaja: {scores['P1']}")
+    print(f"Tekoäly: {scores['AI']}")
 
     if scores["P1"] < scores["AI"]:
         print("Pelaaja voitti! :)")
