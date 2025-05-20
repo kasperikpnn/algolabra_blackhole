@@ -50,7 +50,7 @@ Kattavuus on testattu coverage-työkalulla, jolla on luotu alla näkyvä raportt
 
 ## Testien toistaminen
 
-Testauksen ohjeet löytyvät [käyttöohjeesta](linkki). Kattavuusreportin voi generoida seuraavilla komennoilla:
+Testauksen ohjeet löytyvät [käyttöohjeesta](https://github.com/kasperikpnn/algolabra_blackhole/blob/main/dokumentaatio/kayttoohje.md). Kattavuusreportin voi generoida seuraavilla komennoilla:
 
 ```
 coverage run --branch -m pytest
