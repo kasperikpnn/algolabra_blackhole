@@ -18,5 +18,4 @@ Black Hole on peli, jota voi pelata tekstipohjaisessa käyttöliittymässä teko
 
 ## Testien käyttöohje
 (seuraa aiempien käyttöohjeiden askelia 1-4, jos et ole sitä tehnyt)
-1. Aloita testit komennolla $ poetry pytest.
-
+1. Aloita testit komennolla $ pytest src.
