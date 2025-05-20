@@ -10,7 +10,7 @@ class BlackHoleAI:
         """Arvioi pelitilanteen. Heuristiikkana tekoälyn senhetkisten voittoruutujen määrä miinus pelaajan senhetkisten voittoruutujen määrä."""
         sumlist = []
         for i in range(21):
-            if board[i] == None:
+            if board[i] is None:
                 score = self.compute_score(i, board)
                 sumlist.append(score)
             else:
@@ -29,7 +29,7 @@ class BlackHoleAI:
         return player_sums["P1"]-player_sums["AI"]
 
     def process_turn(self, board, ai_number, player_number):
-        """Kopioi pelitilanteen ja jäljellä olevat numerot ennen kuin kokeillaan eri siirtoja."""
+        """Kopioi pelitilanteen ennen siirtojen kokeilua."""
         self.board = board.copy()
         sums = self.create_sum_list(self.board)
         empty_spaces, neighbors = self.obtain_info() 
@@ -40,7 +40,7 @@ class BlackHoleAI:
         empty_spaces = []
         neighbors = [2, 4, 4, 4, 6, 4, 4, 6, 6, 4, 4, 6, 6, 6, 4, 2, 4, 4, 4, 4, 2]
         for i in range(21): # 21 ruutua
-            if self.board[i] == None:
+            if self.board[i] is None:
                 empty_spaces.append(i)
             else:
                 neighbors[i] = None
@@ -82,10 +82,10 @@ class BlackHoleAI:
                 sorted_empty_spaces.remove(prev_best_move)
                 sorted_empty_spaces.insert(0, prev_best_move)
             for space in sorted_empty_spaces:
-                # Syväkopioidaan kaikki käsiteltävät listat
-                new_sums = copy.deepcopy(sums)
-                new_neighbors = copy.deepcopy(neighbors)
-                new_empty_spaces = copy.deepcopy(empty_spaces)
+                # Kopioidaan kaikki käsiteltävät listat
+                new_sums = sums.copy()
+                new_neighbors = neighbors.copy()
+                new_empty_spaces = empty_spaces.copy()
                 # Päivitetään summa- ja naapurilistaa kokeiltavalle siirrolle
                 for adj_space in adjacency[space]:
                     if new_sums[adj_space] != None:
@@ -125,10 +125,10 @@ class BlackHoleAI:
                 sorted_empty_spaces.remove(prev_best_move)
                 sorted_empty_spaces.insert(0, prev_best_move)
             for space in sorted_empty_spaces:
-                # Syväkopioidaan kaikki käsiteltävät listat
-                new_sums = copy.deepcopy(sums)
-                new_neighbors = copy.deepcopy(neighbors)
-                new_empty_spaces = copy.deepcopy(empty_spaces)
+                # Kopioidaan kaikki käsiteltävät listat
+                new_sums = sums.copy()
+                new_neighbors = neighbors.copy()
+                new_empty_spaces = empty_spaces.copy()
                 # Päivitetään summa- ja naapurilistaa kokeiltavalle siirrolle
                 for adj_space in adjacency[space]:
                     if new_sums[adj_space] != None:
@@ -167,7 +167,7 @@ class BlackHoleAI:
                 # ei tiukkaa aikakatkaisua: kunhan uuden syvyyden tutkiminen aloitetaan ennen kuin aikaraja menee umpeen, se sallitaan
                 print("päästiin syvyyteen " + str(depth))
                 break
-            space, value = self.minimax(depth, -9999, 9999, True, ai_number, player_number, empty_spaces, sums, neighbors)
+            space, value = self.minimax(depth, -math.inf, math.inf, True, ai_number, player_number, empty_spaces, sums, neighbors)
             print("syvyys: " + str(depth) + ", paras siirto: " + str(space) + ", arvo: " + str(value))
             if space is not None:
                 best_space = space
