@@ -40,7 +40,7 @@ Tekoälylle on toteutettu yksikkötestit. Pelille ja sen käyttöliittymälle ei
 
 Kattavuus on testattu coverage-työkalulla, jolla on luotu alla näkyvä raportti. 
 
-(![image](https://github.com/user-attachments/assets/20aa5f00-8016-4937-a966-7bd18cdfcbf2)
+![image](https://github.com/user-attachments/assets/20aa5f00-8016-4937-a966-7bd18cdfcbf2)
 
 
 ## Testien toistaminen
