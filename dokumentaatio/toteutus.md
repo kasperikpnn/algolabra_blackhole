@@ -44,7 +44,7 @@ Muiden tekoälyn käyttämien metodien, kuten *obtain_info* (tehdään ennen min
 
 ### Puutteet
 
-- Algoritmin käyttämä heuristiikka ei ole optimaalinen erityisesti alkupelissä empiirisen testauksen perusteella, jossa tekoäly pelaa itseään vastaan, mutta toinen tekoälyistä tekee ensimmäiset neljä siirtoa täysin satunnaisesti. Alkupelin satunnaisesti pelaava tekoäly onnistuu monestikin voittamaan täysin heuristiikkapohjaisesti pelaavan tekoälyn: valitettavasti tästä ei ole dataa, mutta arvio on että noin 10% ajasta satunnaisesti pelattu alkupeli voittaa heuristiikkapohjaisen alkupelin.
+- Algoritmin käyttämä heuristiikka on puutteellinen erityisesti alkupelissä empiirisen testauksen perusteella, jossa tekoäly pelaa itseään vastaan, mutta toinen tekoälyistä tekee ensimmäiset neljä siirtoa täysin satunnaisesti. Alkupelin satunnaisesti pelaava tekoäly onnistuu voittamaan noin kolmasosan peleistä täysin heuristiikan pohjalta pelaavaa tekoälyä vastaan. (katso: [testausdokumentti](linkki) )
 
 ### Parannusehdotukset
 
