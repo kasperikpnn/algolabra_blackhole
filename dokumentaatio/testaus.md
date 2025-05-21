@@ -6,13 +6,7 @@ Projektin yksikkötestaus on toteutettu pytestillä. Yksikkötestien lisäksi pr
 
 ## Yksikkötestit
 
-Luokalle BlackHoleAI (sijaitsee blackhole_ai.py tiedostossa) on toteutettu yksikkötestit. Pelille ja sen käyttöliittymälle ei ole toteutettu testejä. Alla on jokainen testi järjestyksessä ja kategorioituna, ja lyhyt kuvaus testin tarkoituksesta.
-
-### Luokan metodien testaus
-
-#### test_create_sum_list
-
-- toimiiko *create_sum_list* ja siinä käytetty *compute_score* toivotusti eräällä pelilaudan tilanteella, jossa on sekä tasapelejä että pelaajalle ja tekoälylle häviäviä ruutuja.
+Tekoälylle on toteutettu yksikkötestit. Pelille ja sen käyttöliittymälle ei ole toteutettu testejä. Alla on jokainen testi järjestyksessä ja kategorioituna, ja lyhyt kuvaus testin tarkoituksesta.
 
 ### Siirtojen laillisuuden testaus
 
