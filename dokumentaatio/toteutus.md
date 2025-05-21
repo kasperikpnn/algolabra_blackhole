@@ -32,7 +32,7 @@ Alpha-beta -karsinnalla ja siirtojen järjestämisellä tehostettu minimax-algor
 
 Algoritmin tilavaativuus on O(bd) + parhaiden siirtojen muistamiseen vaadittava välimuisti.
 
-Muiden tekoälyn käyttämien metodien, kuten *obtain_info* (tehdään ennen minimaxiin siirtymistä) ja *evaluate* (annetaan laudalle heuristinen arvo) aikavaativuudet ovat O(1).
+Muiden tekoälyn käyttämien metodien, kuten *obtain_info* (tehdään ennen minimaxiin siirtymistä) ja *calculate_score* (annetaan laudalle heuristinen arvo) aikavaativuudet ovat O(1).
 
 ## Puutteet ja parannusehdotukset
 
