@@ -1,4 +1,4 @@
-# algolabra_blackhole
+# Black Hole-tekoäly
 
 Harjoitustyö Helsingin yliopiston kurssille "Aineopintojen harjoitustyö: Algoritmit ja tekoäly".
 
