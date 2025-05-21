@@ -2,7 +2,7 @@
 
 Harjoitustyö Helsingin yliopiston kurssille "Aineopintojen harjoitustyö: Algoritmit ja tekoäly".
 
-Harjoitustyö sisältää Black Hole-peliä varten tehdyn tekoälyn, sekä yksinkertaisen tekstipohjaisen käyttöliittymän peliä varten.
+Black Hole-pelille tehty tekoäly, sekä yksinkertainen tekstipohjainen käyttöliittymä peliä varten.
 
 [Käyttöohje](https://github.com/kasperikpnn/algolabra_blackhole/blob/main/dokumentaatio/kayttoohje.md)
 
