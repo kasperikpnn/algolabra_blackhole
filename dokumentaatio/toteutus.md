@@ -20,15 +20,9 @@ Tekoäly suorittaa haun parhaalle siirrolle minimax-algoritmilla, jolla yritetä
 
 Tekoäly saa heuristisen arvonsa tällä kaavalla:
 
-> 2a + b - c - 2d
+> a - b
 
-a = tyhjät ruudut, joissa vastapelaajalla on suurempi summa kuin tekoälyllä ja summien erotus on suurempi kuin tekoälyn seuraava numero
-
-b = tyhjät ruudut, joissa vastapelaajalla on suurempi summa kuin tekoälyllä (sisältää siis myös a:n tyhjät ruudut)
-
-c = tyhjät ruudut, joissa tekoälyllä on suurempi summa kuin vastapelaajalla
-
-d = tyhjät ruudut, joissa tekoälyllä on suurempi summa kuin vastapelaajalla ja summien erotus on suurempi kuin vastapelaajan seuraava numero
+Missä a on tekoälyn numeroiden summa, joilla ei ole naapureita ja b on vastapelaajan numeroiden summa, joilla ei ole naapureita.
 
 ## Tila- ja aikavaativuudet
 
@@ -42,13 +36,12 @@ Muiden tekoälyn käyttämien metodien, kuten *obtain_info* (tehdään ennen min
 
 ## Puutteet ja parannusehdotukset
 
-### Puutteet
-
-- Algoritmin käyttämä heuristiikka on puutteellinen erityisesti alkupelissä empiirisen testauksen perusteella, jossa tekoäly pelaa itseään vastaan, mutta toinen tekoälyistä tekee ensimmäiset neljä siirtoa täysin satunnaisesti. Alkupelin satunnaisesti pelaava tekoäly onnistuu voittamaan noin kolmasosan peleistä täysin heuristiikan pohjalta pelaavaa tekoälyä vastaan. (katso: [testausdokumentti](linkki) )
+Ohjelmassa ei ole toiminnan kannalta puutteita.
 
 ### Parannusehdotukset
 
-- Tekoälyn heuristiikkaa voisi kehittää. Todennäköisesti on mahdollista havaita laskelmallisesti voittava pelitilanne jo ennen viimeistä siirtoa, mikä tekisi tekoälystä tehokkaamman jo pelin alkupuolella. Nykyisellä toteutuksella tekoäly löytää voittavan/häviävän tilanteen yleensä vasta kuudennella siirrollaan, jolloin se ehtii analysoimaan pelin loppuun asti.
+- Algoritmin käyttämä heuristiikka on mahdollisesti puutteellinen alkupelissä empiirisen testauksen perusteella, jossa tekoäly pelaa itseään vastaan, mutta toinen tekoälyistä tekee ensimmäiset neljä siirtoa täysin satunnaisesti. Alkupelin satunnaisesti pelaava tekoäly onnistuu voittamaan noin neljäsosan peleistä täysin heurististen arvojen mukaan pelaavaa tekoälyä vastaan. (katso: [testausdokumentti](https://github.com/kasperikpnn/algolabra_blackhole/blob/main/dokumentaatio/testaus.md)) Tämä tosin vaatisi lisää testejä, joissa aloittava pelaaja pysyisi aina samana.
+- Tekoälyn heuristiikkaa voisi nopeuttaa niin, että voitto havaittaisiin aiemmin. Todennäköisesti on mahdollista havaita laskelmallisesti voittava pelitilanne jo ennen viimeistä siirtoa, mikä tekisi tekoälystä tehokkaamman jo pelin alkupuolella. Nykyisellä toteutuksella tekoäly löytää voittavan/häviävän tilanteen yleensä vasta kuudennella siirrollaan, jolloin se ehtii analysoimaan pelin loppuun asti.
 - Black Hole-peliä itsessään täytyisi analysoida tarkemmin tekoälyn jatkokehitystä varten. Onko ensimmäisellä vai toisella pelaajalla Black Holessa etu? Onko pelin alussa jokin objektiivisesti paras siirto, joka voidaan tehdä aina ilman minimaxia? Onko jokin toinen tapa analysoida pelilaudan tämänhetkistä tilannetta parempi, kuin tyhjien ruutujen summien laskeminen? Onko paras strategia alkupelissä sittenkään asettaa omat numerot ruutuihin, joissa on mahdollisimman vähän naapureita vai onko pienien numeroiden asettaminen laajemmin parempi idea?
 - Tekoälyn jatkokehitystä varten voisi olla hyödyllistä tallentaa jokainen pelattu peli ja jokainen tekoälyn siirrolle saama arvo tekstimuotoisesti, ja sen lopputulos.
 - Pelillä voisi olla graafinen käyttöliittymä, tai se voisi vähintään olla jollain tapaa selkeämpi. Joillekin uusille pelaajille oli vaikeaa hahmottaa mitkä ruudut ovat vierekkäisiä.
