@@ -57,7 +57,7 @@ Jonka jälkeen HTML-pohjaisen raportin voi löytää sijainnista /htmlcov/index.
 
 ## Empiiriset testit
 
-Empiiristen testien tavoitteena on testata valittua heuristiikkaa, eli pelaako tekoäly Black Hole-peliä optimaalisesti.
+Empiiristen testien tavoitteena on testata valittua heuristiikkaa, eli pelaako tekoäly Black Hole-peliä optimaalisesti. Testeillä voidaan myös verrata eri heuristiikkametodeja keskenään.
 
 Suoritin kaksi isompaa empiiristä koetta vanhalla heuristiikalla: ensimmäisessä kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee siirtonsa täysin satunnaisesti, ja toisessa kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee neljä ensimmäistä siirtoa täysin satunnaisesti. Kummassakin kokeessa pelataan 100 peliä ja lasketaan kummankin osapuolen voitot sekä tasapelit. Kokeet on suoritettu eri Python-tiedostossa, jossa pelin koodia on muokattu niin, että pelaajan syötteen sijasta tekoäly tekee kummatkin siirrot.
 
