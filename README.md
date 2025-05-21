@@ -4,7 +4,7 @@ Harjoitustyö Helsingin yliopiston kurssille "Aineopintojen harjoitustyö: Algor
 
 Black Hole-pelille tehty tekoäly, sekä yksinkertainen tekstipohjainen käyttöliittymä peliä varten.
 
-(pelistä löytyy tietoa määrittelydokumentissa)
+(pelistä löytyy kuvaus määrittelydokumentissa)
 
 [Käyttöohje](https://github.com/kasperikpnn/algolabra_blackhole/blob/main/dokumentaatio/kayttoohje.md)
 
