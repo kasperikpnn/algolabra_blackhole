@@ -53,6 +53,7 @@ Muiden tekoälyn käyttämien metodien, kuten *obtain_info* (tehdään ennen min
 - Tekoälyn jatkokehitystä varten voisi olla hyödyllistä tallentaa jokainen pelattu peli ja jokainen tekoälyn siirrolle saama arvo tekstimuotoisesti, ja sen lopputulos.
 - Pelillä voisi olla graafinen käyttöliittymä, tai se voisi vähintään olla jollain tapaa selkeämpi. Joillekin uusille pelaajille oli vaikeaa hahmottaa mitkä ruudut ovat vierekkäisiä.
 - Pelaajien luvut voitaisiin erottaa toisistaan kompaktimmin esimerkiksi väreillä: kokeilin tämän ratkaisemiksi alkuun *coloramaa*, mutta päätin lopulta olla käyttämättä sitä, koska en ollut varma olisiko se yhteensopiva kaikkien käyttöjärjestelmien terminalien kanssa.
+- Empiiriset testit joissa kokeillaan heuristiikan tehokkuutta voisi käyttää paljon suurempaa otoskokoa kuin 100, esimerkiksi 1000.
 
 ## Laajojen kielimallien käyttö
 
