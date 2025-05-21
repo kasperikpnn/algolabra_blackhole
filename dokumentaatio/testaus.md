@@ -62,7 +62,23 @@ Jonka jälkeen HTML-pohjaisen raportin voi löytää sijainnista /htmlcov/index.
 
 ## Empiiriset testit
 
-Empiiristen testien tavoitteena on testata valittua heuristiikkaa, eli pelaako tekoäly Black Hole-peliä optimaalisesti. Suoritin kaksi isompaa empiiristä koetta: ensimmäisessä kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee siirtonsa täysin satunnaisesti, ja toisessa kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee neljä ensimmäistä siirtoa täysin satunnaisesti. Kummassakin kokeessa pelataan 100 peliä ja lasketaan kummankin osapuolen voitot sekä tasapelit. Kokeet on suoritettu eri Python-tiedostossa, jossa pelin koodia on muokattu niin, että pelaajan syötteen sijasta tekoäly tekee kummatkin siirrot.
+Empiiristen testien tavoitteena on testata valittua heuristiikkaa, eli pelaako tekoäly Black Hole-peliä optimaalisesti.
+
+Suoritin kaksi isompaa empiiristä koetta vanhalla heuristiikalla: ensimmäisessä kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee siirtonsa täysin satunnaisesti, ja toisessa kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee neljä ensimmäistä siirtoa täysin satunnaisesti. Kummassakin kokeessa pelataan 100 peliä ja lasketaan kummankin osapuolen voitot sekä tasapelit. Kokeet on suoritettu eri Python-tiedostossa, jossa pelin koodia on muokattu niin, että pelaajan syötteen sijasta tekoäly tekee kummatkin siirrot.
+
+Suoritin uudella heuristiikalla toisen kokeen uudestaan (tekoäly pelaa toista tekoälyä vastaan, joka valitsee neljä ensimmäistä siirtoa täysin satunnaisesti). Testien perusteella vaikuttaa siltä, että uusi heuristiikka on alkupelissä pätevämpi kuin vanha. Uudesta heuristiikasta löytyy selitys [toteutusdokumentista](https://github.com/kasperikpnn/algolabra_blackhole/blob/main/dokumentaatio/toteutus.md).
+
+Tekoälyn vanha heuristiikka käytti tätä kaavaa saadakseen arvon:
+
+> 2a + b - c - 2d
+
+a = tyhjät ruudut, joissa vastapelaajalla on suurempi summa kuin tekoälyllä ja summien erotus on suurempi kuin tekoälyn seuraava numero
+
+b = tyhjät ruudut, joissa vastapelaajalla on suurempi summa kuin tekoälyllä (sisältää siis myös a:n tyhjät ruudut)
+
+c = tyhjät ruudut, joissa tekoälyllä on suurempi summa kuin vastapelaajalla
+
+d = tyhjät ruudut, joissa tekoälyllä on suurempi summa kuin vastapelaajalla ja summien erotus on suurempi kuin vastapelaajan seuraava numero
 
 Tekoäly täysin satunnaisia siirtoja vastaan:
 
