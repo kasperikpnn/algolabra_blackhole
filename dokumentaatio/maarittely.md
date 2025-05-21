@@ -1,6 +1,6 @@
 # Määrittelydokumentti
 
-Tämä dokumentti määrittelee Helsingin Yliopiston tietojenkäsittelytieteen kandiohjelman kevään 2025 3. periodin Aineopintojen harjoitustyö: Algoritmit ja tekoäly -kurssin laboratoriotyötoteutuksen. Opinto-ohjelmani on tietojenkäsittelytieteen kandiohjelma.
+Tämä dokumentti määrittelee Helsingin Yliopiston tietojenkäsittelytieteen kandiohjelman kevään 2025 3. periodin Aineopintojen harjoitustyö: Algoritmit ja tekoäly -kurssin harjoitustyön toteutuksen. Opinto-ohjelmani on tietojenkäsittelytieteen kandiohjelma.
 
 ## Aihe
 
