@@ -80,11 +80,15 @@ c = tyhjät ruudut, joissa tekoälyllä on suurempi summa kuin vastapelaajalla
 
 d = tyhjät ruudut, joissa tekoälyllä on suurempi summa kuin vastapelaajalla ja summien erotus on suurempi kuin vastapelaajan seuraava numero
 
-Tekoäly täysin satunnaisia siirtoja vastaan:
+Vanhan heuristiikan tekoäly täysin satunnaisia siirtoja vastaan:
 
 ![pie-chart](https://github.com/user-attachments/assets/f40a5042-81d6-46ac-8c08-ab7c7096573b)
 
-Tekoäly toista tekoälyä vastaan, joka tekee neljä ensimmäistä siirtoa satunnaisesti:
+Vanhan heuristiikan tekoäly toista tekoälyä vastaan, joka tekee neljä ensimmäistä siirtoa satunnaisesti:
 
 ![pie-chart (1)](https://github.com/user-attachments/assets/e1b0acc9-85dc-4bd7-aa15-fec1f29d6505)
+
+Uuden heuristiikan tekoäly toista tekoälyä vastaan, joka tekee neljä ensimmäistä siirtoa satunnaisesti:
+
+![pie-chart (2)](https://github.com/user-attachments/assets/58153f73-0834-44fc-93dc-d6ada4c58d2e)
 
