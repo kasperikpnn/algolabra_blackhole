@@ -66,7 +66,9 @@ Empiiristen testien tavoitteena on testata valittua heuristiikkaa, eli pelaako t
 
 Suoritin kaksi isompaa empiiristä koetta vanhalla heuristiikalla: ensimmäisessä kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee siirtonsa täysin satunnaisesti, ja toisessa kokeessa tekoäly pelasi toista tekoälyä vastaan, joka valitsee neljä ensimmäistä siirtoa täysin satunnaisesti. Kummassakin kokeessa pelataan 100 peliä ja lasketaan kummankin osapuolen voitot sekä tasapelit. Kokeet on suoritettu eri Python-tiedostossa, jossa pelin koodia on muokattu niin, että pelaajan syötteen sijasta tekoäly tekee kummatkin siirrot.
 
-Suoritin uudella heuristiikalla toisen kokeen uudestaan (tekoäly pelaa toista tekoälyä vastaan, joka valitsee neljä ensimmäistä siirtoa täysin satunnaisesti). Testien perusteella vaikuttaa siltä, että uusi heuristiikka on alkupelissä pätevämpi kuin vanha. Uudesta heuristiikasta löytyy selitys [toteutusdokumentista](https://github.com/kasperikpnn/algolabra_blackhole/blob/main/dokumentaatio/toteutus.md).
+Suoritin uudella heuristiikalla toisen kokeen uudestaan (tekoäly pelaa toista tekoälyä vastaan, joka valitsee neljä ensimmäistä siirtoa täysin satunnaisesti). Testien perusteella vaikuttaa siltä, että uusi heuristiikka on alkupelissä hieman pätevämpi kuin vanha. Uudesta heuristiikasta löytyy selitys [toteutusdokumentista](https://github.com/kasperikpnn/algolabra_blackhole/blob/main/dokumentaatio/toteutus.md).
+
+Testeissä pelin aloittava pelaaja valittiin satunnaisesti, joten jos pelissä jommallakummalla pelaajalla on etu, tätä ei ole otettu huomioon.
 
 Tekoälyn vanha heuristiikka käytti tätä kaavaa saadakseen arvon:
 
