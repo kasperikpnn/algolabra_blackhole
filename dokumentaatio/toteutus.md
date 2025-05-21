@@ -44,7 +44,7 @@ Muiden tekoälyn käyttämien metodien, kuten *obtain_info* (tehdään ennen min
 
 ### Puutteet
 
-- Algoritmin käyttämä heuristiikka ei ole optimaalinen erityisesti alkupelissä empiirisen testauksen perusteella, jossa tekoäly pelaa itseään vastaan, mutta toinen tekoälyistä tekee ensimmäiset neljä siirtoa täysin satunnaisesti. Alkupelin satunnaisesti pelaava tekoäly onnistuu monestikin voittamaan täysin heuristiikkapohjaisesti pelaavan tekoälyn: valitettavasti tästä ei ole dataa, mutta arvio on että noin 10% ajasta satunnaisesti pelattu alkupeli voittaa heuristiikkapohjaisen alkupelin.
+- Algoritmin käyttämä heuristiikka on puutteellinen erityisesti alkupelissä empiirisen testauksen perusteella, jossa tekoäly pelaa itseään vastaan, mutta toinen tekoälyistä tekee ensimmäiset neljä siirtoa täysin satunnaisesti. Alkupelin satunnaisesti pelaava tekoäly onnistuu voittamaan noin kolmasosan peleistä täysin heuristiikan pohjalta pelaavaa tekoälyä vastaan. (katso: [testausdokumentti](linkki) )
 
 ### Parannusehdotukset
 
@@ -53,10 +53,11 @@ Muiden tekoälyn käyttämien metodien, kuten *obtain_info* (tehdään ennen min
 - Tekoälyn jatkokehitystä varten voisi olla hyödyllistä tallentaa jokainen pelattu peli ja jokainen tekoälyn siirrolle saama arvo tekstimuotoisesti, ja sen lopputulos.
 - Pelillä voisi olla graafinen käyttöliittymä, tai se voisi vähintään olla jollain tapaa selkeämpi. Joillekin uusille pelaajille oli vaikeaa hahmottaa mitkä ruudut ovat vierekkäisiä.
 - Pelaajien luvut voitaisiin erottaa toisistaan kompaktimmin esimerkiksi väreillä: kokeilin tämän ratkaisemiksi alkuun *coloramaa*, mutta päätin lopulta olla käyttämättä sitä, koska en ollut varma olisiko se yhteensopiva kaikkien käyttöjärjestelmien terminalien kanssa.
+- Empiiriset testit joissa kokeillaan heuristiikan tehokkuutta voisi käyttää paljon suurempaa otoskokoa kuin 100, esimerkiksi 1000.
 
 ## Laajojen kielimallien käyttö
 
-Olen käyttänyt ChatGPT-4o (OpenAI)-kielimallia näihin asioihin:
+Olen käyttänyt ChatGPT-4o (OpenAI)-kielimallia:
 - itse pelin koodin kehittämisen tukena: pyysin tekoälyä suoraan kehittämään pelille koodin, ja sain osittain toimivaa koodia josta käytin suoraan joitain hyviä ideoita
 - itselleni uusien konseptien (minimax-algoritmi, iteratiivinen syveneminen, alpha-beta -karsinta) selittämiseen esimerkkien avulla
 - virheanalyysiin monissa eri tilanteissa, missä ohjelman toiminta on keskeytynyt virheen vuoksi
