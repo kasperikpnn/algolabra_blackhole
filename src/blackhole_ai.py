@@ -27,6 +27,8 @@ class BlackHoleAI:
         return empty_spaces, neighbors
     
     def calculate_score(self, board, neighbors):
+        """Laskee tämänhetkisen heurististen arvon ennen iteratiiviseen syvenemiseen siirtymistä."""
+        # Heuristinen arvo on tekoälyn naapurittomien numeroiden summa - pelaajan naapurittomien numeroiden summa
         score = 0
         for i in range(21):
             if board[i] is not None:
@@ -63,19 +65,19 @@ class BlackHoleAI:
                 # Kopioidaan kaikki käsiteltävät listat
                 new_neighbors = neighbors.copy()
                 new_empty_spaces = empty_spaces.copy()
-                new_score = score
+                new_heuristic_score = score
                 # Päivitetään naapurilistaa ja pisteytystä kokeiltavalle siirrolle
                 for adj_space in adjacency[space]:
                     new_neighbors[adj_space]-=1
                     if new_neighbors[adj_space] == 0:
                         if self.board[adj_space] is not None:
                             num, player = self.board[adj_space]
-                            new_score += num if player == 'AI' else -num
+                            new_heuristic_score += num if player == 'AI' else -num
                 new_empty_spaces.remove(space)
                 self.board[space] = (ai_number, "AI") # tekoäly kokeilee siirtoa
                 if new_neighbors[space] == 0:
-                    new_score += ai_number
-                new_score = self.minimax(depth-1, alpha, beta, False, ai_number+1, player_number, new_empty_spaces, new_neighbors, new_score)
+                    new_heuristic_score += ai_number
+                new_score = self.minimax(depth-1, alpha, beta, False, ai_number+1, player_number, new_empty_spaces, new_neighbors, new_heuristic_score)
                 self.board[space] = None # perutaan siirto
                 if new_score[1] > value:
                     value = new_score[1]
@@ -105,19 +107,19 @@ class BlackHoleAI:
                 # Kopioidaan kaikki käsiteltävät listat
                 new_neighbors = neighbors.copy()
                 new_empty_spaces = empty_spaces.copy()
-                new_score = score
+                new_heuristic_score = score
                 # Päivitetään naapurilistaa ja pisteytystä kokeiltavalle siirrolle
                 for adj_space in adjacency[space]:
                     new_neighbors[adj_space]-=1
                     if new_neighbors[adj_space] == 0:
                         if self.board[adj_space] is not None:
                             num, player = self.board[adj_space]
-                            new_score += num if player == 'AI' else -num
+                            new_heuristic_score += num if player == 'AI' else -num
                 new_empty_spaces.remove(space)
                 self.board[space] = (player_number, "P1") # pelaaja kokeilee siirtoa
                 if new_neighbors[space] == 0:
-                    new_score -= player_number
-                new_score = self.minimax(depth-1, alpha, beta, True, ai_number, player_number+1, new_empty_spaces, new_neighbors, new_score)
+                    new_heuristic_score -= player_number
+                new_score = self.minimax(depth-1, alpha, beta, True, ai_number, player_number+1, new_empty_spaces, new_neighbors, new_heuristic_score)
                 self.board[space] = None # perutaan siirto
                 if new_score[1] < value:
                     value = new_score[1]
@@ -141,10 +143,10 @@ class BlackHoleAI:
         for depth in range(1, max_depth+1):
             if time.time() - start_time > time_limit:
                 # ei tiukkaa aikakatkaisua: kunhan uuden syvyyden tutkiminen aloitetaan ennen kuin aikaraja menee umpeen, se sallitaan
-                # debug: print("päästiin syvyyteen " + str(depth-1))
+                print("päästiin syvyyteen " + str(depth-1))
                 break
             space, value = self.minimax(depth, -math.inf, math.inf, True, ai_number, player_number, empty_spaces, neighbors, score)
-            # debug: print("syvyys: " + str(depth) + ", paras siirto: " + str(space) + ", arvo: " + str(value))
+            print("syvyys: " + str(depth) + ", paras siirto: " + str(space) + ", arvo: " + str(value))
             if space is not None:
                 best_space = space
         return best_space, value
